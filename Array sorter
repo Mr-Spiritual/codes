@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>
+        Searched and Sorted
+    </title>
+</head>
+
+<body style="text-align: center;">
+
+    <h1 style="color: rgb(98, 0, 154);">
+        Sorter and Finder
+    </h1>
+
+    <h3 id="po">Enter the Array Elements</h3>
+    <div class=" d-flex align-items-center justify-content-center">
+        <div class="card w-50">
+            <div id="array-form" class="card-body">
+                <!-- <input type="text" name="array[]" value="" /> <button class="plus-btn" onclick="addInputField()">+</button> <br> -->
+                <button class="plus-btn" onclick="addInputField()">Add element</button>
+                <br>
+                <!-- <button class="minus-btn" onclick="removeInputField()">Remove last element</button> <br> -->
+                <br>
+            </div>
+            <div>
+                <button type="button" name="button" onclick="Sort()">
+                    Sort
+                </button>
+            
+                <br>
+            
+                <p id="par"></p>
+            </div>
+            <div>
+                <input type="text" placeholder="Enter element to search" id="key" value="" />
+                <br>
+                <br>
+                <button type="button" name="button" onclick="Find()">
+                    Search
+                </button>
+                <p id="search-res"></p>
+            </div>
+        </div>
+    </div>
+    
+
+ 
+
+    </div>
+
+    <script type="text/javascript">
+        let k = "The respective values are :";
+        function Sort() {
+            let input = document.getElementsByName('array[]');
+            console.log(input)
+            const nums = [];
+            for (let i = 0; i < input.length; i++) {
+                let a = input[i];
+                nums.push(Number(a.value?.trim()))
+            }
+            nums.sort((a, b) => a - b)
+            console.log(nums)
+            let k = "";
+            for (let i = 0; i < nums.length; i++)
+                k += nums[i] + ", ";
+            document.getElementById("par").innerHTML = k;
+        }
+
+        function addInputField() {
+            const form = document.getElementById("array-form");
+            console.log("clicked")
+            const ele = document.createElement("input");
+            ele.setAttribute("name", "array[]")
+            form.append(ele)
+        }
+
+        function Find() {
+            let input = document.getElementsByName('array[]');
+            console.log(input)
+            let key = Number(document.getElementById('key').value)
+            // const index = nums.findIndex(Number(key.value))
+            let index = -1;
+            for (let i = 0; i < input.length; i++) {
+                if (input[i].value == key) {
+                    index = i;
+                    break;
+                }
+            }
+
+
+            console.log(index)
+
+            const searchRes = document.getElementById("search-res");
+            console.log(searchRes);
+            if (index == -1)
+                searchRes.innerHTML = "Element absent";
+            else
+                searchRes.innerHTML = `Element at ${index} position in unsorted array`;
+        }
+
+        // function removeInputField() {
+        //     const form = document.getElementById("array-form");
+            
+        // }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
